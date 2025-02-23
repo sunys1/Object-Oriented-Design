@@ -1,0 +1,11 @@
+design simple LinkedIn system
+
+Key features:
+1.post on LinkedIn
+2.connect
+3.follow
+4.create profile
+5.like
+6.comment
+7.send(share)
+8.notification
