@@ -1,3 +1,3 @@
 public enum NotificationType {
-    LIKE, COMMENT
+    LIKE, COMMENT, CONNECT_RECEIVED, CONNECT_APPROVED
 }

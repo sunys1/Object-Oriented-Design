@@ -4,16 +4,16 @@ import java.util.List;
 
 public class Comment {
     private int commentId;
-    private int authorId;
-    private int postId;
+    private User author;
+    private Post post;
     private String commentTxt;
     private LocalDate commentDate = LocalDate.now();
     private HashMap<Integer, Like> likes;
 
-    public Comment(int commentId, int authorId, int postId, String commentTxt) {
+    public Comment(int commentId, User author, Post post, String commentTxt) {
         this.commentId = commentId;
-        this.authorId = authorId;
-        this.postId = postId;
+        this.author = author;
+        this.post = post;
         this.commentTxt = commentTxt;
     }
 
@@ -21,12 +21,12 @@ public class Comment {
         return commentId;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public User getAuthor() {
+        return author;
     }
 
-    public int getPostId() {
-        return postId;
+    public Post getPost() {
+        return post;
     }
 
     public String getCommentTxt() {

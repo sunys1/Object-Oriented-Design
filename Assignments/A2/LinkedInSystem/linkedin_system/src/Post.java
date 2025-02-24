@@ -5,14 +5,15 @@ import java.util.List;
 
 public class Post {
     private int postId;
-    private int authorId;
+    private User author;
+    private String postTitle;
     private String postTxt;
     private LocalDate postDate = LocalDate.now();
     private HashMap<Integer, Like> likes;
 
-    public Post(int postId, int authorId, String postTxt) {
+    public Post(int postId, User author, String postTxt) {
         this.postId = postId;
-        this.authorId = authorId;
+        this.author = author;
         this.postTxt = postTxt;
     }
 
@@ -20,8 +21,12 @@ public class Post {
         return postId;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public User getAuthor() {
+        return author;
+    }
+
+    public String getPostTitle() {
+        return postTitle;
     }
 
     public String getPostTxt() {
