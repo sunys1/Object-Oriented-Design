@@ -17,7 +17,7 @@ public class Register {
     private Map<Integer, List<Like>> myLikes; // key: userId - All posts a user liked
     private Map<Integer, List<Like>> likesReceived; // key: userId - All likes a user received from posts and comments
     private Map<Integer, List<Share>> myShares; // key: userId - All posts a user shared
-    private Map<Integer, List<Share>> sharesReceived; // key: userId - All shares a user received from connections
+    private Map<Integer, List<Share>> sharedByList;
     private Map<Integer, List<Notification>> notifications; // key: userId - All notifications a user received
 
     public Register() {
@@ -34,7 +34,7 @@ public class Register {
         this.myLikes = new HashMap<Integer, List<Like>>();
         this.likesReceived = new HashMap<Integer, List<Like>>();
         this.myShares = new HashMap<Integer, List<Share>>();
-        this.sharesReceived = new HashMap<Integer, List<Share>>();
+        this.sharedByList = new HashMap<Integer, List<Share>>();
         this.notifications = new HashMap<Integer, List<Notification>>();
     }
 
@@ -90,8 +90,8 @@ public class Register {
         return myShares;
     }
 
-    public Map<Integer, List<Share>> getSharesReceived() {
-        return sharesReceived;
+    public Map<Integer, List<Share>> getSharedByList() {
+        return sharedByList;
     }
 
     public Map<Integer, List<Notification>> getNotifications() {

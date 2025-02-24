@@ -7,6 +7,7 @@ public class Notification {
     private User sender;
     private User receiver;
     private Comment comment;
+    private Comment parentComment;
     private Post post;
     private String message;
     private LocalDateTime notificationTime = LocalDateTime.now();
@@ -29,7 +30,7 @@ public class Notification {
         }
     }
 
-    // For Comment
+    // For Comment_Post
     public Notification(int notificationId, NotificationType type, Post post, Comment comment) {
         this.notificationId = notificationId;
         this.type = type;
@@ -37,8 +38,21 @@ public class Notification {
         this.receiver = post.getAuthor();
         this.comment = comment;
         this.post = post;
-        this.message = "Hi, " + receiver.getUserName() + ", you received a comment from " + sender.getUserName()
-                + " in your post '" + post.getPostTitle() + "'.";
+        this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " commented on your post '"
+                + post.getPostTitle() + "'.";
+    }
+
+    // For Comment_parentComment
+    public Notification(int notificationId, NotificationType type, Comment parentComment, Comment comment) {
+        this.notificationId = notificationId;
+        this.type = type;
+        this.sender = comment.getAuthor();
+        this.receiver = post.getAuthor();
+        this.comment = comment;
+        this.parentComment = parentComment;
+        this.post = parentComment.getPost();
+        this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " commented on your comment '"
+                + parentComment.getCommentTxt() + "' in the post '" + post.getPostTitle() + "'.";
     }
 
     // For Share
