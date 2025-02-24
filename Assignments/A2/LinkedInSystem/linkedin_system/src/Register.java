@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Register {
+    private List<User> users = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
     private Map<Integer, List<User>> connections;
     private Map<Integer, List<User>> followers;
     private Map<Integer, List<User>> following;
     private Map<Integer, List<User>> connectSent;
     private Map<Integer, List<User>> connectReceived;
-    private Map<Integer, List<Post>> posts;
+    private Map<Integer, List<Post>> myPosts;
     private Map<Integer, List<Comment>> myComments; // key: userId - All comments a user made
     private Map<Integer, List<Comment>> commentsReceived; // key: userId - All comments a user received
     private Map<Integer, List<Like>> myLikes; // key: userId - All posts a user liked
@@ -19,12 +21,14 @@ public class Register {
     private Map<Integer, List<Notification>> notifications; // key: userId - All notifications a user received
 
     public Register() {
+        this.users = new ArrayList<>();
+        this.posts = new ArrayList<>();
         this.connections = new HashMap<Integer, List<User>>();
         this.followers = new HashMap<Integer, List<User>>();
         this.following = new HashMap<Integer, List<User>>();
         this.connectSent = new HashMap<Integer, List<User>>();
         this.connectReceived = new HashMap<Integer, List<User>>();
-        this.posts = new HashMap<Integer, List<Post>>();
+        this.myPosts = new HashMap<Integer, List<Post>>();
         this.myComments = new HashMap<Integer, List<Comment>>();
         this.commentsReceived = new HashMap<Integer, List<Comment>>();
         this.myLikes = new HashMap<Integer, List<Like>>();
@@ -32,6 +36,14 @@ public class Register {
         this.myShares = new HashMap<Integer, List<Share>>();
         this.sharesReceived = new HashMap<Integer, List<Share>>();
         this.notifications = new HashMap<Integer, List<Notification>>();
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
     }
 
     public Map<Integer, List<User>> getConnections() {
@@ -54,8 +66,8 @@ public class Register {
         return connectReceived;
     }
 
-    public Map<Integer, List<Post>> getPosts() {
-        return posts;
+    public Map<Integer, List<Post>> getMyPosts() {
+        return myPosts;
     }
 
     public Map<Integer, List<Comment>> getMyComments() {
