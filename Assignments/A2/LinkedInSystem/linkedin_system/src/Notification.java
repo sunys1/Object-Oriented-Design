@@ -11,7 +11,7 @@ public class Notification {
     private String message;
     private LocalDateTime notificationTime = LocalDateTime.now();
 
-    // For Connect request/approval
+    // For Follow, Connect request/approval
     public Notification(int notificationId, NotificationType type, User sender, User receiver) {
         this.notificationId = notificationId;
         this.type = type;
@@ -24,6 +24,8 @@ public class Notification {
             this.message = "Hi, " + receiverName + ", you received a connection request from " + senderName + ".";
         }else if (type == NotificationType.CONNECT_APPROVED){
             this.message = "Hi, " + receiverName + ", " + senderName + " approved your connection request.";
+        }else if (type == NotificationType.FOLLOW){
+            this.message = "Hi, " + receiverName + ", " + senderName + " starts following you.";
         }
     }
 
@@ -83,6 +85,10 @@ public class Notification {
 
     public Post getPost() {
         return post;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public LocalDateTime getNotificationTime() {
