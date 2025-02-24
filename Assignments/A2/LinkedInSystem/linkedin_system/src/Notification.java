@@ -47,7 +47,7 @@ public class Notification {
         this.notificationId = notificationId;
         this.type = type;
         this.sender = comment.getAuthor();
-        this.receiver = post.getAuthor();
+        this.receiver = parentComment.getAuthor();
         this.comment = comment;
         this.parentComment = parentComment;
         this.post = parentComment.getPost();
