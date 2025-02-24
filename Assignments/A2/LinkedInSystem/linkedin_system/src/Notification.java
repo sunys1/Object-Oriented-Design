@@ -65,7 +65,7 @@ public class Notification {
         this.post = post;
 
         if (type == NotificationType.POST_SHARED) {
-            this.message = "Hi, " + sender.getUserName() + ", " + sender.getUserName() + " shared your post '"
+            this.message = "Hi, " + post.getAuthor().getUserName() + ", " + sender.getUserName() + " shared your post '"
                     + post.getPostTitle() + "'.";
         }else if (type == NotificationType.SHARED_WITH_YOU){
             this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " shared a post with you: '"
