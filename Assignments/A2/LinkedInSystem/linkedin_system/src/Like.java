@@ -7,11 +7,19 @@ public class Like {
     private Comment comment;
     private LocalDate likeDate = LocalDate.now();
 
-    public Like(int likeId, User author, Post post, Comment comment) {
+    // For Like_Comment
+    public Like(int likeId, User author, Comment comment) {
         this.likeId = likeId;
         this.author = author;
         this.post = post;
         this.comment = comment;
+    }
+
+    // For Like_Post
+    public Like(int likeId, User author, Post post) {
+        this.likeId = likeId;
+        this.author = author;
+        this.post = post;
     }
 
     public int getLikeId() {
