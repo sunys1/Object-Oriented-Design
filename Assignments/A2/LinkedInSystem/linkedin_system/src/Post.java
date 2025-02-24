@@ -11,9 +11,10 @@ public class Post {
     private LocalDateTime postDate = LocalDateTime.now();
     private HashMap<Integer, Like> likes;
 
-    public Post(int postId, User author, String postTxt) {
+    public Post(int postId, User author, String postTitle, String postTxt) {
         this.postId = postId;
         this.author = author;
+        this.postTitle = postTitle;
         this.postTxt = postTxt;
     }
 

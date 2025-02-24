@@ -4,8 +4,12 @@ import java.util.List;
 public class LinkedIn {
     private Register register;
 
-    public LinkedIn(Register register) {
-        this.register = register;
+    public LinkedIn() {
+        this.register = new Register();
+    }
+
+    public Register getRegister() {
+        return register;
     }
 
     public User createProfile(int userId, String userName, String title) {
@@ -65,8 +69,8 @@ public class LinkedIn {
         Notification notification = notifyFollowConnect(notificationId, NotificationType.FOLLOW, sender, receiver);
     }
 
-    public Post createPost(int postId, User author, String postTxt) {
-        Post post = new Post(postId, author, postTxt);
+    public Post createPost(int postId, User author, String postTitle, String postTxt) {
+        Post post = new Post(postId, author, postTitle, postTxt);
 
         register.getMyPosts().get(author.getUserId()).add(post); // Add to user's post list
         register.getPosts().add(post); // Add to the list of all posts
@@ -74,7 +78,7 @@ public class LinkedIn {
         return post;
     }
 
-    public void likePost(Post post, User sender){
+    public void likePost(User sender, Post post){
         int likeId = register.getMyLikes().get(sender.getUserId()).size() + 1;
         Like like = new Like(likeId, sender, post);
 
@@ -86,7 +90,7 @@ public class LinkedIn {
         Notification notification = notifyLikePost(notificationId, NotificationType.LIKE, post, like);
     }
 
-    public void likeComment(Post post, Comment comment, User sender){
+    public void likeComment(User sender, Comment comment){
         int likeId = register.getMyLikes().get(sender.getUserId()).size() + 1;
         Like like = new Like(likeId, sender, comment);
 
@@ -104,16 +108,21 @@ public class LinkedIn {
         register.getMyShares().get(sender.getUserId()).add(share); // Add to myShares
         register.getSharedByList().get(post.getAuthor().getUserId()).add(share); // Add to post author's sharedByList
 
-        // Notify receiver
-        int notificationReceiverId = register.getNotifications().get(receiver.getUserId()).size() + 1;
-        Notification notificationReceiver = notifyShare(notificationReceiverId, NotificationType.SHARED_WITH_YOU, post, sender, receiver);
+        // LinkedIn does not allow users to share their own posts with themselves.
+        if (!post.getAuthor().equals(receiver)) {
+            // Notify receiver
+            int notificationReceiverId = register.getNotifications().get(receiver.getUserId()).size() + 1;
+            Notification notificationReceiver = notifyShare(notificationReceiverId, NotificationType.SHARED_WITH_YOU, post, sender, receiver);
 
-        // Notify post author
-        int notificationPostAuthorId = register.getNotifications().get(post.getAuthor().getUserId()).size() + 1;
-        Notification notificationPostAuthor = notifyShare(notificationPostAuthorId, NotificationType.POST_SHARED, post, sender, receiver);
+            // Notify post author
+            int notificationPostAuthorId = register.getNotifications().get(post.getAuthor().getUserId()).size() + 1;
+            Notification notificationPostAuthor = notifyShare(notificationPostAuthorId, NotificationType.POST_SHARED, post, sender, receiver);
+        }else{
+            System.out.println("No, you are not allowed to share your own posts with yourself.");
+        }
     }
 
-    public void comment(User author, String commentTxt, Post post, Comment parentComment) {
+    public Comment comment(User author, String commentTxt, Post post, Comment parentComment) {
         int commentId = register.getMyComments().get(author.getUserId()).size() + 1;
         // For Comment_Post
         if(parentComment == null){
@@ -123,6 +132,8 @@ public class LinkedIn {
 
             int notificationId = register.getNotifications().get(post.getAuthor().getUserId()).size() + 1;
             Notification notification = notifyCommentPost(notificationId, NotificationType.COMMENT_POST, post, comment);
+
+            return comment;
         }else {
             // For Comment_parentComment
             Comment comment = new Comment(commentId, author, parentComment, commentTxt);
@@ -131,6 +142,8 @@ public class LinkedIn {
 
             int notificationId = register.getNotifications().get(parentComment.getAuthor().getUserId()).size() + 1;
             Notification notification = notifyCommentComment(notificationId, NotificationType.COMMENT_COMMENT, parentComment, comment);
+
+            return comment;
         }
     }
 
