@@ -4,18 +4,12 @@ import java.util.List;
 public class User {
      private int userId;
      private String userName;
-     private List<User> connections;
-     private List<User> followers;
-     private List<User> following;
-     private List<Post> posts;
+     private String title;
 
-     public User(int userId, String userName) {
+     public User(int userId, String userName, String title) {
          this.userId = userId;
          this.userName = userName;
-         connections = new ArrayList<>();
-         followers = new ArrayList<>();
-         following = new ArrayList<>();
-         posts = new ArrayList<>();
+         this.title = title;
      }
 
     public int getUserId() {
@@ -26,11 +20,11 @@ public class User {
         return userName;
     }
 
-    public List<User> getConnections() {
-        return connections;
+    public String getTitle() {
+         return title;
     }
 
-    public List<Post> getPosts() {
-        return posts;
+    public void setTitle(String title) {
+         this.title = title;
     }
 }
