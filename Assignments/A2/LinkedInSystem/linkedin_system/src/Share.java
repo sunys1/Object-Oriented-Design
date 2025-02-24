@@ -1,26 +1,32 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Share {
     private int shareId;
-    private int postId;
-    private int receiverId;
-    private LocalDate date = LocalDate.now();
+    private Post post;
+    private User sender;
+    private User receiver;
+    private LocalDateTime shareDate = LocalDateTime.now();
 
-    public Share(int shareId, int postId, int receiverId) {
+    public Share(int shareId, Post post, User sender, User receiver) {
         this.shareId = shareId;
-        this.postId = postId;
-        this.receiverId = receiverId;
+        this.post = post;
+        this.sender = sender;
     }
 
     public int getShareId() {
         return shareId;
     }
 
-    public int getPostId() {
-        return postId;
+    public Post getPost() {
+        return post;
     }
 
-    public int getReceiverId() {
-        return receiverId;
+    public User getSender() {
+        return sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
     }
 }
