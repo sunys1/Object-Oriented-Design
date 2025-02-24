@@ -52,7 +52,8 @@ public class Notification {
         this.parentComment = parentComment;
         this.post = parentComment.getPost();
         this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " commented on your comment '"
-                + parentComment.getCommentTxt() + "' in the post '" + post.getPostTitle() + "'.";
+                + parentComment.getCommentTxt() + "' in the post '"
+                + post.getPostTitle() + " --- '" + comment.getCommentTxt() + "'.";
     }
 
     // For Share
@@ -90,7 +91,7 @@ public class Notification {
         this.type = type;
         this.sender = like.getAuthor();
         this.post = post;
-        this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " liked your post '"
+        this.message = "Hi, " + post.getAuthor().getUserName() + ", " + sender.getUserName() + " liked your post '"
                 + post.getPostTitle() + "'.";
     }
 
