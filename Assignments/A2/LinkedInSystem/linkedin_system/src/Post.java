@@ -8,7 +8,7 @@ public class Post {
     private User author;
     private String postTitle;
     private String postTxt;
-    private LocalDate postDate = LocalDate.now();
+    private LocalDateTime postDate = LocalDateTime.now();
     private HashMap<Integer, Like> likes;
 
     public Post(int postId, User author, String postTxt) {
@@ -33,7 +33,7 @@ public class Post {
         return postTxt;
     }
 
-    public LocalDate getPostDate() {
+    public LocalDateTime getPostDate() {
         return postDate;
     }
 

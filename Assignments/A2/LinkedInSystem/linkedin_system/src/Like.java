@@ -1,11 +1,12 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Like {
     private int likeId;
     private User author;
     private Post post;
     private Comment comment;
-    private LocalDate likeDate = LocalDate.now();
+    private LocalDateTime likeDate = LocalDateTime.now();
 
     // For Like_Comment
     public Like(int likeId, User author, Comment comment) {
@@ -38,7 +39,7 @@ public class Like {
         return comment;
     }
 
-    public LocalDate getLikeDate() {
+    public LocalDateTime getLikeDate() {
         return likeDate;
     }
 }
