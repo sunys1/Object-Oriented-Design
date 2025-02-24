@@ -41,16 +41,27 @@ public class Notification {
                 + " in your post '" + post.getPostTitle() + "'.";
     }
 
+    // For Share
+    public Notification(int notificationId, NotificationType type, User sender, User receiver, Post post) {
+        this.notificationId = notificationId;
+        this.type = type;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.post = post;
+        this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " shared with you a post: '"
+                + post.getPostTitle() + "'.";
+    }
+
+
     // For Like_Comment
-    public Notification(int notificationId, NotificationType type, Post post, Comment comment, Like like) {
+    public Notification(int notificationId, NotificationType type, Comment comment, Like like) {
         this.notificationId = notificationId;
         this.type = type;
         this.sender = like.getAuthor();
         this.receiver = comment.getAuthor();
         this.comment = comment;
-        this.post = post;
         this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " liked your comment '"
-                + comment.getCommentTxt() + "' in the post '" + post.getPostTitle() + "'.";
+                + comment.getCommentTxt() + "' in the post '" + comment.getPost().getPostTitle() + "'.";
     }
 
     // For Like_Post
