@@ -42,14 +42,20 @@ public class Notification {
     }
 
     // For Share
-    public Notification(int notificationId, NotificationType type, User sender, User receiver, Post post) {
+    public Notification(int notificationId, NotificationType type, Post post, User sender, User receiver) {
         this.notificationId = notificationId;
         this.type = type;
         this.sender = sender;
         this.receiver = receiver;
         this.post = post;
-        this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " shared with you a post: '"
-                + post.getPostTitle() + "'.";
+
+        if (type == NotificationType.POST_SHARED) {
+            this.message = "Hi, " + sender.getUserName() + ", " + sender.getUserName() + " shared your post '"
+                    + post.getPostTitle() + "'.";
+        }else if (type == NotificationType.SHARED_WITH_YOU){
+            this.message = "Hi, " + receiver.getUserName() + ", " + sender.getUserName() + " shared a post with you: '"
+                    + post.getPostTitle() + "'.";
+        }
     }
 
 

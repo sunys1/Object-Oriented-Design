@@ -12,6 +12,7 @@ public class Share {
         this.shareId = shareId;
         this.post = post;
         this.sender = sender;
+        this.receiver = receiver;
     }
 
     public int getShareId() {
