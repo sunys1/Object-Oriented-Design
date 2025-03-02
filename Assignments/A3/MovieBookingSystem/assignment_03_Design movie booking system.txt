@@ -1,0 +1,27 @@
+Design movie booking system
+
+Key features:
+1.create booking
+2.add Movie
+3.add show to movie
+4.get all movies 
+5.book seat(check available seats)
+6.make a payment
+
+
+Explanation:
+	•	A Movie represents a film (e.g., “Inception”, “Avatar”).
+	•	A Show represents a specific screening of a movie at a particular time and location (theater/cinema hall).
+
+Relationship Between Movie and Show
+	•	One Movie can have multiple Shows, meaning a movie can be screened multiple times in different theaters or at different times.
+	•	Each Show is linked to a specific Movie, meaning that a show cannot exist without being associated with a movie.
+
+Example:
+
+Let’s say we have a movie “Inception”. It can have multiple showtimes in different theaters:
+	1.	Show 1: “Inception” at 5:00 PM in Theater A
+	2.	Show 2: “Inception” at 7:00 PM in Theater B
+	3.	Show 3: “Inception” at 9:00 PM in Theater A
+
+Here, “Inception” is the Movie, and each screening (Show 1, Show 2, Show 3) is a Show.
