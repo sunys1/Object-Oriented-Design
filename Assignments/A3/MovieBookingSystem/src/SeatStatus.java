@@ -1,3 +1,4 @@
 public enum SeatStatus {
-    OCCUPIED, AVAILABLE
+    OCCUPIED,
+    AVAILABLE
 }

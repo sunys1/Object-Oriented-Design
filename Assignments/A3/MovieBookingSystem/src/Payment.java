@@ -1,20 +1,21 @@
 import java.time.LocalDateTime;
 
 public class Payment {
-    private int transactionId;
+    private String paymentId;
     private PaymentMethod method;
     private LocalDateTime dateOfPurchase;
     private double amount;
+    private PaymentStatus status = PaymentStatus.PENDING;
 
-    public Payment(int transactionId, PaymentMethod method, LocalDateTime dateOfPurchase, double amount) {
-        this.transactionId = transactionId;
+    public Payment(String paymentId, PaymentMethod method, LocalDateTime dateOfPurchase, double amount) {
+        this.paymentId = paymentId;
         this.method = method;
         this.dateOfPurchase = dateOfPurchase;
         this.amount = amount;
     }
 
-    public int getTransactionId() {
-        return transactionId;
+    public String getPaymentId() {
+        return paymentId;
     }
 
     public PaymentMethod getMethod() {
@@ -29,11 +30,20 @@ public class Payment {
         return amount;
     }
 
+    public PaymentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PaymentStatus status) {
+        this.status = status;
+    }
+
     public String toString() {
-        return "Payment Details: " +
-                "Transaction receipt: " + transactionId +
-                ", " + method.toString() +
+        return "Payment Details: " + "\n" +
+                "Transaction receipt: " + paymentId + "\n" +
+                method +
                 " -$" + amount +
-                ", Date/Time: " + dateOfPurchase;
+                "\nDate/Time: " + dateOfPurchase + "\n" +
+                "Status: " + status + "\n";
     }
 }

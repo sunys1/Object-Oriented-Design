@@ -1,20 +1,16 @@
 public class Movie extends Resource {
     private String genre;
     private String director;
-    private String Rating; // R，G, PG, etc
+    private String rating; // R，G, PG, etc
     private String language;
     private String duration;
 
-    public Movie(String id, String name, int totalQuantity) {
-        super(id, name, totalQuantity);
-    }
-
     public Movie(String id, String name, int totalQuantity, String genre, String director, String rating,
-                 String language, String duration, String releaseDate) {
+                 String language, String duration) {
         super(id, name, totalQuantity);
         this.genre = genre;
         this.director = director;
-        this.Rating = rating;
+        this.rating = rating;
         this.language = language;
         this.duration = duration;
     }
@@ -28,7 +24,7 @@ public class Movie extends Resource {
     }
 
     public String getRating() {
-        return Rating;
+        return rating;
     }
 
     public String getLanguage() {
@@ -43,7 +39,7 @@ public class Movie extends Resource {
         return "Movie Details: " +
                 "genre: '" + genre + '\'' +
                 ", director: '" + director + '\'' +
-                ", Rating: '" + Rating + '\'' +
+                ", Rating: '" + rating + '\'' +
                 ", language: '" + language + '\'' +
                 ", duration: '" + duration + '\'';
     }

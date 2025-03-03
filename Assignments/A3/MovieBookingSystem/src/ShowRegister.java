@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ShowRegister {
     private Map<String, List<Show>> shows; // Key: movie id
@@ -11,6 +12,39 @@ public class ShowRegister {
         this.shows = new HashMap<>();
         this.showSeats = new HashMap<>();
     }
+
+    // Return shows status to MovieManager
+    public List<Show> getShows(String movieId) {
+        return shows.get(movieId);
+    }
+
+    // Return available shows to MovieManager
+    public List<Show> getAvailableShows(String movieId) {
+        List<Show> availableShows = new ArrayList<>();
+
+        for (Show show : shows.get(movieId)) {
+            if (show.getStatus() == ShowStatus.OPEN) {
+                availableShows.add(show);
+            }
+        }
+
+        return availableShows;
+    }
+
+    // Return seats status to MovieManager
+    public List<Seat> getShowSeats (int showId) {
+        return showSeats.get(showId);
+    }
+
+    // Return available seats to MovieManager
+    public List<Seat> getAvailableShowSeats(int showId) {
+        List<Seat> seats = showSeats.get(showId);
+
+        return seats.stream()
+                .filter(seat -> seat.getStatus() == SeatStatus.AVAILABLE)
+                .collect(Collectors.toList());
+    }
+
     public void addShow(Show show) {
         String movieId = show.getMovie().getId();
         int showId = show.getShowId();
@@ -28,11 +62,6 @@ public class ShowRegister {
             Seat seat = new Seat("S" + i, SeatStatus.AVAILABLE);
             showSeats.get(showId).add(seat);
         }
-    }
-
-    public List<Seat> getShowSeatAvailability (int showId) {
-        // Return seats status to ResourceManager
-        return showSeats.get(showId);
     }
 
     public void updateSeatStatus(int showId, String seatId, SeatStatus status) {

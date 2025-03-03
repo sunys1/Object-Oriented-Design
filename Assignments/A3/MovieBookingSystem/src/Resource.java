@@ -1,14 +1,19 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Resource {
     private String id;
     private String name;
-    private int totalQuantity; // # of shows for a movie
-    private int availableQuantity; // # of shows available for a movie
+    private int totalQuantity;
+    private int availableQuantity;
+    private Queue<String> waitingList;// Each resource maintains individual queue（store userId)
 
     public Resource(String id, String name, int totalQuantity) {
         this.id = id;
         this.name = name;
         this.totalQuantity = totalQuantity;
         this.availableQuantity = totalQuantity;
+        this.waitingList = new LinkedList<>();
     }
 
     public String getId() {
@@ -41,6 +46,14 @@ public class Resource {
 
     public void setAvailableQuantity(int availableQuantity) {
         this.availableQuantity = availableQuantity;
+    }
+
+    public Queue<String> getWaitingList() {
+        return waitingList;
+    }
+
+    public void setWaitingList(Queue<String> waitingList) {
+        this.waitingList = waitingList;
     }
 }
 

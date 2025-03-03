@@ -22,4 +22,9 @@ public class Seat {
     {
         this.status = status;
     }
+
+    public String toString()
+    {
+        return seatId + ": " + status;
+    }
 }
